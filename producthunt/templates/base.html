@@ -12,7 +12,7 @@
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-      <a class="navbar-brand" href="">
+      <a class="navbar-brand" href="{% url 'home' %}">
       <img src="{% static 'logo.png' %}" height=40 width=40 class="d-inline-block alighn-top" />
       Product Hunt
       </a>
@@ -31,6 +31,8 @@
         <div class="navbar-nav ml-auto">
 
           {% if user.is_authenticated %}
+          <div class="nav-item nav-link"><p> Logged in : [{{user}}] </p></div>
+          <a class="nav-item nav-link" href="{% url 'create' %}"><span class="oi oi-plus"> Add</span></a>
           <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
             <form id="logout" action="{% url 'logout' %}" method="post">
               {% csrf_token %}
